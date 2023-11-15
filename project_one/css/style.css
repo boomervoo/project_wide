@@ -1,0 +1,425 @@
+html {
+  box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  width: 100%;
+}
+
+button {
+  cursor: pointer;
+}
+
+.flex {
+  display: flex;
+}
+
+img {
+  max-width: 100%;
+}
+
+a:focus {
+  outline: none;
+}
+
+button:focus {
+  outline: none;
+}
+
+input:focus {
+  outline:none;
+}
+
+textarea:focus {
+  outline:none;
+}
+
+.list-reset {
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.btn-reset {
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+p {
+  padding: 0;
+  margin: 0;
+}
+
+h1, h2, h4 {
+  padding: 0;
+  margin: 0;
+}
+
+img {
+  background-size: contain;
+}
+
+
+@font-face {
+  font-family: 'Roboto';
+  src: local('Roboto-Regular'), url('../fonts/RobotoRegular.woff2') format('woff2'),
+  url('../fonts/RobotoRegular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: local('Roboto-Bold'), url('../fonts/RobotoBold.woff2') format('woff2'),
+  url('../fonts/RobotoBold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+.page {
+  min-width: 320px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+}
+
+/* header */
+
+.header {
+  background-color: #3F2AFF;
+}
+
+.header-wrapper-box {
+  align-items: center;
+  justify-content: space-between;
+  height: 80px;
+}
+
+.nav__items {
+  gap: 56px;
+}
+
+.nav {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: normal;
+  color: #fff;
+}
+
+/* hero */
+
+.hero__block {
+  padding: 130px 20px 129px 0px;
+}
+
+.hero__text {
+  max-width: 459px;
+}
+
+.hero__container {
+  margin-bottom: 80px;
+}
+
+.hero__block--img {
+  width: 100%;
+  background-image: url("../img/hero.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.hero {
+  background: radial-gradient(44.07% 44.07% at 67.78% 55.93%, #555681 0%, #212133 100%);
+}
+
+.hero__title {
+  margin-bottom: 30px;
+  font-size: 60px;
+  line-height: 100%;
+  font-weight: 700;
+  color: #fff;
+}
+
+.hero__descr {
+  margin-bottom: 60px;
+  font-size: 18px;
+  line-height: 150%;
+  color: #fff;
+}
+
+.btn {
+  padding: 24px 75.5px;
+  background-color: #3F2AFF;
+  border: 1px solid #3F2AFF;
+  border-radius: 20px;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: normal;
+  color: #fff;
+}
+
+/* advantes */
+
+.advantes {
+  padding-bottom: 82px;
+}
+
+.adv__img {
+  margin-right: 30px;
+  margin-top: 20px;
+  width: 160px;
+  height: 142px;
+  background-image: url("../img/advantes.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.title--h2 {
+  margin-bottom: 15px;
+  font-size: 40px;
+  font-weight: 700;
+  line-height: 100%;
+  color: #2e2b44;
+}
+
+.adv__text {
+  width: 580px;
+}
+
+.descr {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 150%;
+}
+
+.advantes__descr {
+  color: #666;
+}
+
+.advantes__block--one {
+  margin-bottom: 23px;
+}
+
+.adv__descr {
+  padding-top: 15px;
+  padding-left: 109px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 120%;
+  color: #666;
+}
+
+.adv__item--img {
+  min-height: 80px;
+  background-position: left;
+  background-repeat: no-repeat;
+  background-position: left;
+  background-size: 77px 80px;
+}
+
+.adv__item--1 {
+  background-image: url("../img/eye_adv.svg");
+}
+
+.adv__item--2 {
+  background-image: url("../img/fingers_adv.svg");
+}
+
+.adv__item--3 {
+  background-image: url("../img/eye-circle_adv.svg");
+}
+
+
+/* teachers */
+
+.teachers {
+  margin-bottom: 75px;
+  background-color: #212133;
+}
+
+.teacher-list {
+  padding-bottom: 75px;
+}
+
+.title--teachers {
+  padding-top: 76px;
+  padding-bottom: 0;
+  margin-bottom: 22px;
+  color:#fff;
+}
+
+.teacher__img {
+  width: 100%;
+  margin-bottom: 28px;
+}
+
+.name__teacher {
+  margin: 0;
+  margin-bottom: 5px;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 150%;
+  color: #fff;
+}
+
+.teacher__descr {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 150%;
+  color: #85859B;
+}
+
+/* courses */
+
+.courses {
+  margin-bottom: 50px;
+}
+
+.title-courses {
+  margin-bottom: 22px;
+}
+
+.courses__item {
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.card-courses {
+  display: flex;
+  flex-direction: column;
+  background-color: #EDF0F9;
+  height: 100%;
+  border-radius: 20px;
+}
+
+.courses__img {
+  height: 180px;
+  background-position: right;
+  background-repeat: no-repeat;
+  background-size: cover;
+  border-radius: 20px 20px 0 0;
+}
+
+.courses__img--1 {
+  flex-shrink: 0;
+  background-image: url("../img/courses-1.svg");
+}
+
+.courses__img--2 {
+  flex-shrink: 0;
+  background-image: url("../img/courses-2.svg");
+}
+
+.courses__img--3 {
+  flex-shrink: 0;
+  background-image: url("../img/courses-3.svg");
+}
+
+.courses__img--4 {
+  flex-shrink: 0;
+  background-image: url("../img/courses-4.svg");
+}
+
+.courses__text {
+  display: flex;
+  flex-direction: column;
+  flex-basis: 100%;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 30px;
+  min-height: 300px;
+}
+
+.text {
+  margin-bottom: 47px;
+}
+
+.courses__title {
+  margin: 0;
+  margin-bottom: 8px;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 150%;
+}
+
+.courses__descr {
+  width: 100%;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 150%;
+  color: #666;
+  letter-spacing: 0.1px;
+}
+
+.courses__btn {
+  bottom: 30px;
+  padding: 20.5px 59px;
+  font-size: 16px;
+}
+
+.block-time {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  align-items: center;
+}
+
+.text-time {
+  padding: 0;
+  padding-left: 4px;
+  margin: 0;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: normal;
+  color: #fff;
+}
+
+/* footer */
+
+.footer {
+  background-color: #2E2B44;
+  margin-bottom: 3px;
+}
+
+.footer__items {
+  gap: 30px;
+  justify-content: center;
+}
+
+.footer__item {
+  height: 80px;
+  align-items: center;
+}
+
+/* copyright */
+
+.copyright-block {
+  justify-content: center;
+}
+
+.copyright-skb {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: normal;
+  color: #2E2B44;
+}
+
+.copyright-r {
+  color: #3F2AFF;
+}
