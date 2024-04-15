@@ -319,7 +319,6 @@ function sortStudents(arrayStudents) {
   };
 };
 
-// Этап 6. Создайте функцию фильтрации массива студентов и добавьте события для элементов формы.
 
 (() => {
   document.addEventListener('DOMContentLoaded', (event) => {

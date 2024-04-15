@@ -1,0 +1,45 @@
+
+.title-game {
+  font-size: 22px;
+  text-align: center;
+}
+
+.card-groups {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 1000px;
+  margin: 0 auto;
+  gap: 20px;
+  background-color:  lightblue;
+  padding-top: 20px;
+}
+
+.card {
+  display: flex;
+  object-fit: contain;
+  margin-bottom: 20px;
+  width: 60px;
+  height: 60px;
+  text-align: center;
+  justify-content: center;
+  color: white;
+}
+
+.form-game {
+  display: flex;
+  flex-direction: column;
+  max-width: 600px;
+  margin: 0 auto;
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+.btn {
+  display: flex;
+}
+
+.button-close {
+  margin: 0 auto;
+  width: 600px;
+}
