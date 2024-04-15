@@ -302,7 +302,7 @@ function sortStudents(arrayStudents) {
     yearLearnStart.addEventListener('click', () => {
       arrayStudents.sort((a, b) => {
         const learnA = a.yearStartLearn;
-        const learnB = b.yearLearnStart;
+        const learnB = b.yearStartLearn;
 
         if (learnA < learnB) {
           return -1;
