@@ -1,0 +1,80 @@
+.container {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 40px;
+}
+.row {
+  display: table-row;
+}
+
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.input {
+  max-width: 45%;
+  padding: 10px;
+  width: 100%;
+  border-radius: 30px;
+}
+
+.btn-form {
+  padding: 20px;
+  border: 1px solid black;
+  border-radius: 15px;
+  background-color: lightgreen;
+}
+
+.name {
+  transition: background-color 0.3s ease-in-out;
+}
+
+.name:hover {
+  background-color: lightgoldenrodyellow;
+}
+
+.name:active {
+  background-color: lightgreen;
+}
+
+.date-birthday {
+  transition: background-color 0.3s ease-in-out;
+}
+
+.date-birthday:hover {
+  background-color: lightgoldenrodyellow;
+}
+
+.date-birthday:active {
+  background-color: lightgreen;
+}
+
+.faculty {
+  transition: background-color 0.3s ease-in-out;
+}
+
+.faculty:hover {
+  background-color: lightgoldenrodyellow;
+}
+
+.faculty:active {
+  background-color: lightgreen;
+}
+
+.learn {
+  transition: background-color 0.3s ease-in-out;
+}
+
+.learn:hover {
+  background-color: lightgoldenrodyellow;
+}
+
+.learn:active {
+  background-color: lightgreen;
+}
+
+
+
+
