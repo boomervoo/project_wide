@@ -40,6 +40,22 @@ const studentsList = [
     birthday: '01.09.2002',
     yearStartLearn: 2020,
     faculty: 'Реклама и PR'
+  },
+  {
+    name: 'Алексей',
+    surname: 'Волков',
+    middleName: 'Сергеевич',
+    birthday: '11.11.1994',
+    yearStartLearn: 2013,
+    faculty: 'Реклама и PR'
+  },
+  {
+    name: 'Александра',
+    surname: 'Бастрыкина',
+    middleName: 'Дмитриевна',
+    birthday: '17.05.1985',
+    yearStartLearn: 2002,
+    faculty: 'Исторический'
   }
 ]
 
@@ -142,6 +158,83 @@ function renderStudentsTable(studentsArray) {
   });
 }
 
+function createfilterStudents() {
+
+  const title = document.createElement('h2')
+  const containerFilter = document.getElementById('form')
+  const filter = document.createElement('div');
+  const inputName = document.createElement('input');
+  const inputFaculty = document.createElement('input');
+  const inputStartLearn = document.createElement('input');
+  const inputEndLearn = document.createElement('input');
+
+  inputName.classList.add('name-filter', 'input-filter');
+  inputFaculty.classList.add('faculty-filter', 'input-filter');
+  inputStartLearn.classList.add('learn-start-filter', 'input-filter');
+  inputEndLearn.classList.add('end-learn-filter', 'input-filter');
+  filter.classList.add('filter');
+  title.classList.add('title-h2')
+
+  inputName.placeholder = ('Введите ФИО');
+  inputFaculty.placeholder = ('Введите факультет');
+  inputStartLearn.placeholder = ('Введите год начала обучения');
+  inputEndLearn.placeholder = ('Введите год конца обучения');
+  title.textContent = "Фильтр по студентам";
+
+
+  filter.append(inputName, inputFaculty, inputStartLearn, inputEndLearn);
+  containerFilter.append(title);
+  containerFilter.appendChild(filter);
+
+  const table = document.getElementsByClassName('table');
+
+  function applyFilters() {
+    let filteredStudents = studentsList;
+
+    // фильтрация по фио
+    if (inputName.value) {
+      filteredStudents = filteredStudents.filter(student => {
+        const fullName = `${student.surname} ${student.name} ${student.middleName}`.toLowerCase();
+        return fullName.includes(inputName.value.toLowerCase());
+      })
+    }
+
+    // фильтрация по факультету
+
+    if (inputFaculty.value) {
+      filteredStudents = filteredStudents.filter(student => {
+        const faculty = `${student.faculty}`.toLowerCase();
+        return faculty.includes(inputFaculty.value.toLowerCase());
+      });
+    }
+
+    // фильтрация по дате начала обучения
+
+    if (inputStartLearn.value) {
+      filteredStudents = filteredStudents.filter(student => {
+        const dateLearn = student.yearStartLearn;
+        return dateLearn === parseInt(inputStartLearn.value);
+      });
+    }
+
+    // фильтрация по дате конца обучения
+
+    if (inputEndLearn.value) {
+      const endYear = parseInt(inputEndLearn.value);
+      filteredStudents = filteredStudents.filter(student => {
+        return student.yearStartLearn + 4 === endYear;
+      });
+    }
+    table.innerHTML = ' ';
+    renderStudentsTable(filteredStudents);
+  }
+
+  inputName.addEventListener('input', applyFilters);
+  inputFaculty.addEventListener('input', applyFilters);
+  inputStartLearn.addEventListener('input', applyFilters);
+  inputEndLearn.addEventListener('input', applyFilters);
+}
+
 function createAddStudentsForm() {
 
   let formContainer = document.getElementById('form');
@@ -161,6 +254,7 @@ function createAddStudentsForm() {
 
   inputs.forEach(input => {
     input.classList.add('input');
+    input.required = true;
   });
 
   h1.classList.add('title');
@@ -171,7 +265,7 @@ function createAddStudentsForm() {
   inputSurname.placeholder = ('Введите фамилию');
   inputMiddleName.placeholder = ('Введите отчество');
   inputBirthday.placeholder = ('Введите дату рождения');
-  inputStartLearn.placeholder = ('Введите дату начала обучения');
+  inputStartLearn.placeholder = ('Введите год начала обучения');
   inputFaculty.placeholder = ('Введите название факультета');
   button.textContent = 'Добавить студента';
   h1.textContent = 'Форма для добавления студентов';
@@ -214,9 +308,11 @@ function createAddStudentsForm() {
     let yearStartLearn = parseInt(inputStartLearn.value, 10);
 
     let currentYear = new Date(2000, 8, 1);
+    let maxValidationYear = new Date();
     let minDateLearn = currentYear.getFullYear();
+    let maxDateLearn = maxValidationYear.getFullYear();
 
-    if (yearStartLearn < minDateLearn) {
+    if (yearStartLearn < minDateLearn || yearStartLearn > maxDateLearn) {
       alert('Дата начала обучения вне допустимого диапазона. Введите дату начала обучения с 2000 года по текущий год');
       return;
     }
@@ -234,6 +330,7 @@ function createAddStudentsForm() {
     inputFaculty.value = '';
 
   })
+
 }
 
 
@@ -325,5 +422,6 @@ function sortStudents(arrayStudents) {
     renderStudentsTable(studentsList);
     createAddStudentsForm();
     sortStudents(studentsList);
+    createfilterStudents();
   });
 })();
