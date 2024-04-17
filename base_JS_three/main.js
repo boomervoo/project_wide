@@ -181,6 +181,12 @@ function createfilterStudents() {
   inputEndLearn.placeholder = ('Введите год конца обучения');
   title.textContent = "Фильтр по студентам";
 
+  inputName.type = 'text';
+  inputFaculty.type = 'text';
+  inputStartLearn.type = 'number';
+  inputEndLearn.type = 'number';
+
+
 
   filter.append(inputName, inputFaculty, inputStartLearn, inputEndLearn);
   containerFilter.append(title);
@@ -250,12 +256,30 @@ function createAddStudentsForm() {
   let inputFaculty = document.createElement('input');
   let button = document.createElement('button');
 
+
+  inputName.type = 'text';
+  inputMiddleName.type = 'text';
+  inputSurname.type = 'text';
+  inputFaculty.type = 'text';
+  inputStartLearn.type = 'number';
+  inputBirthday.type = 'date';
+
   let inputs = [inputName, inputSurname, inputMiddleName, inputBirthday, inputFaculty, inputStartLearn];
 
   inputs.forEach(input => {
     input.classList.add('input');
-    input.required = true;
+    const inputBlock = document.createElement('div');
+    const label = document.createElement('label');
+    const spanError = document.createElement('span');
+    inputBlock.classList.add('validate-block');
+    label.classList.add('label')
+    spanError.classList.add('span-validate', 'hidden-on');
+    spanError.textContent = 'Заполните это поле';
+    label.append(spanError, input)
+    inputBlock.append(label);
+    form.append(inputBlock);
   });
+
 
   h1.classList.add('title');
   form.classList.add('form');
@@ -270,14 +294,27 @@ function createAddStudentsForm() {
   button.textContent = 'Добавить студента';
   h1.textContent = 'Форма для добавления студентов';
 
-  form.append(h1, inputName, inputSurname, inputMiddleName, inputBirthday, inputStartLearn, inputFaculty, button);
+  form.append(h1, button);
 
   formContainer.append(form);
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    if (!inputName.value || !inputMiddleName || !inputSurname || !inputBirthday || !inputFaculty) {
+    let formValid = true;
+    let inputs = [inputName, inputSurname, inputMiddleName, inputBirthday, inputFaculty, inputStartLearn];
+
+    inputs.forEach(input => {
+      const errorMessage = input.previousElementSibling;
+      if(!input.value) {
+        errorMessage.classList.remove('hidden-on');
+        formValid = false;
+      } else {
+        errorMessage.classList.add('hidden-on');
+      }
+    })
+
+    if(!formValid) {
       return;
     }
 
@@ -295,10 +332,10 @@ function createAddStudentsForm() {
     let birthdayValue = new Date(inputBirthday.value);
 
     const minDate = new Date(1900, 0, 1);
-    let maxYear = new Date().getFullYear();
-    let maxDate = new Date(maxYear, 11, 31);
+    const currentDate = new Date();
+    currentDate.setHours(0, 0, 0, 0);
 
-    if (birthdayValue < minDate || birthdayValue > maxDate) {
+    if (birthdayValue < minDate || birthdayValue > currentDate) {
       alert('Дата рождения вне допустимого диапазона. Введите дату между 01.01.1900 и текущей датой.');
       return;
     }
