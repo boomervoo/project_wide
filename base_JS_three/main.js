@@ -78,21 +78,17 @@ function getStudentItem(studentObj) {
   let birthdayStudent = document.createElement('td');
   birthdayStudent.classList.add('td-col');
 
-  let year = studentObj.birthday.split('.');
-  let yearDate = new Date(year[2], year[1] - 1, year[0]);
+  // Конвертируем дату к единому формату YYYY, MM, DD
+  let dateParts = studentObj.birthday.includes('-') ? studentObj.birthday.split('-').map(part => parseInt(part)) : studentObj.birthday.split('.').reverse().map(part => parseInt(part));
+  let birthDate = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
 
-  const minDate = new Date(1900, 0, 1);
-  let maxYear = new Date().getFullYear();
-  let maxDate = new Date(maxYear, 11, 31);
+  // Форматируем дату в DD.MM.YYYY
+  let formattedDate = dateParts[2] + '.' + (dateParts[1] < 10 ? '0' + dateParts[1] : dateParts[1]) + '.' + dateParts[0];
 
-  if (yearDate <= maxDate && yearDate >= minDate) {
-    let ageStudents = getAge(yearDate);
-    birthdayStudent.textContent = `${studentObj.birthday} (${ageStudents} лет)`;
-    row.appendChild(birthdayStudent);
-  } else {
-    birthdayStudent.textContent = 'Дата рождения вне допустимого диапазона';
-    row.appendChild(birthdayStudent);
-  }
+  let ageStudents = getAge(birthDate);
+  birthdayStudent.textContent = `${formattedDate} (${ageStudents} лет)`;
+  row.appendChild(birthdayStudent);
+
 
   function getAge(yearDate) {
     let currentDate = new Date();
@@ -103,6 +99,7 @@ function getStudentItem(studentObj) {
     }
     return age;
   }
+
 
   // выводим факультет
 
@@ -123,26 +120,15 @@ function getStudentItem(studentObj) {
   let currentYear = currentDate.getFullYear();
   let currentMonth = currentDate.getMonth();
 
-  let minDateStartLearn = new Date(2000, 8, 1);
-  let minYear = minDateStartLearn.getFullYear();
+  let yearDiff = currentYear - startLearn;
+  let course = currentMonth >= 8 && currentYear < finishLearn ? yearDiff + 1 : yearDiff;
 
-  if (studentObj.yearStartLearn > minYear) {
-    let yearDiff = currentYear - startLearn;
-    let course = currentMonth >= 8 && currentYear < finishLearn ? yearDiff + 1 : yearDiff;
+  let status = (currentYear > finishLearn) || (currentYear === finishLearn && currentMonth >= 8) ? "закончил" : `${course} курс`;
 
-    let status = (currentYear > finishLearn) || (currentYear === finishLearn && currentMonth >= 8) ? "закончил" : `${course} курс`;
+  yearLearn.textContent = `${startLearn} - ${finishLearn} (${status})`;
 
-    yearLearn.textContent = `${startLearn} - ${finishLearn} (${status})`;
-
-    row.append(yearLearn);
-
-    return row;
-
-  } else {
-    yearLearn.textContent = 'Дата начала обучения вне допустимого диапазона';
-    row.append(yearLearn);
-    return row;
-  }
+  row.append(yearLearn);
+  return row;
 
 }
 
@@ -302,11 +288,10 @@ function createAddStudentsForm() {
     e.preventDefault();
 
     let formValid = true;
-    let inputs = [inputName, inputSurname, inputMiddleName, inputBirthday, inputFaculty, inputStartLearn];
 
     inputs.forEach(input => {
       const errorMessage = input.previousElementSibling;
-      if(!input.value) {
+      if (!input.value) {
         errorMessage.classList.remove('hidden-on');
         formValid = false;
       } else {
@@ -314,7 +299,7 @@ function createAddStudentsForm() {
       }
     })
 
-    if(!formValid) {
+    if (!formValid) {
       return;
     }
 
